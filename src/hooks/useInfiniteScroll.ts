@@ -8,13 +8,13 @@ export const useInfiniteScroll = () => {
 
   const handleScroll = debounce(() => {
     if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
-      loading
+      window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight &&
+      !loading
     ) {
-      return false;
+      setLoading(true);
     }
-    setLoading(true);
+    return false;
   }, 100);
 
   useEffect(() => {
